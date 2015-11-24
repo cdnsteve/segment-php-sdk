@@ -50,6 +50,35 @@ class Validate {
 	}
 
   /**
+   * Validate group requests.
+   * @param array $message
+   * @throws \CdnSteve\Segment\ValidationException
+   */
+  public function group(array $message) {
+    /**
+     * @anonymousId String, optional.
+     * @userId String, required. UserId OR anonymousId required.
+     * @groupId String, required.
+     * @context Array, optional.
+     * @integrations Array, optional.
+     * @timestamp Date, optional.
+     * @traits Array, optional.
+     */
+    // Validate common params.
+    $this->common($message);
+
+    if (!isset($message['groupId'])) {
+      throw new ValidationException('group validation: groupId is required');
+    }
+
+    // Check event is String data type.
+    if (isset($message['group']) && !is_string($message['group']))
+    {
+      throw new ValidationException('group validation: groupId must be a string');
+    }
+  }
+
+  /**
    * Validate track requests.
    * @param array $message
    * @throws \CdnSteve\Segment\ValidationException
@@ -78,5 +107,71 @@ class Validate {
     }
 
   }
+
+  /**
+   * Validate page requests.
+   * @param array $message
+   * @throws \CdnSteve\Segment\ValidationException
+   */
+  public function page(array $message) {
+    /**
+     * @anonymousId String, optional.
+     * @userId String, required. UserId OR anonymousId required.
+     * @context Array, optional.
+     * @name String, optional.
+     * @integrations Array, optional.
+     * @timestamp Date, optional.
+     * @properties Array, optional.
+     */
+    // Validate common params.
+    $this->common($message);
+  }
+
+  /**
+   * Validate alias requests.
+   * @param array $message
+   * @throws \CdnSteve\Segment\ValidationException
+   */
+  public function alias(array $message) {
+    /**
+     * @anonymousId String, optional.
+     * @userId String, required. UserId OR anonymousId required.
+     * @context Array, optional.
+     * @integrations Array, optional.
+     * @timestamp Date, optional.
+     * @previousId String, required.
+     */
+    // Validate common params.
+    $this->common($message);
+
+    if (!isset($message['previousId'])) {
+      throw new ValidationException('alias validation: previousId is required');
+    }
+
+    // Check event is String data type.
+    if (isset($message['previousId']) && !is_string($message['previousId']))
+    {
+      throw new ValidationException('alias validation: previousId must be a string');
+    }
+
+  }
+
+  /**
+   * Validate import requests.
+   * @param array $message
+   * @throws \CdnSteve\Segment\ValidationException
+   */
+  public function import(array $message) {
+    /**
+     * @batch Array, required. Each call must include.
+     * @context Array, optional.
+     * @integrations Array, optional.
+     */
+
+    if (!isset($message['batch'])) {
+      throw new ValidationException('import validation: batch is required');
+    }
+  }
+
 }
 

@@ -32,18 +32,49 @@ class Analytics implements ApiInterface
     $track->send();
   }
 
-  public static function group(array $params)
-  {
-
-  }
-
-  public static function alias(array $params)
-  {
-
-  }
-
+  /**
+   * Page endpoint API calls.
+   *
+   * @param array $params
+   */
   public static function page(array $params)
   {
-
+    $page = new PageService($params);
+    $page->send();
   }
+
+  /**
+   * Group endpoint API calls.
+   *
+   * @param array $params
+   */
+  public static function group(array $params)
+  {
+    $group = new GroupService($params);
+    $group->send();
+  }
+
+  /**
+   * Alias endpoint API calls.
+   *
+   * @param array $params
+   */
+  public static function alias(array $params)
+  {
+    $alias = new AliasService($params);
+    $alias->send();
+  }
+
+  /**
+   * Import endpoint API calls.
+   *
+   * @param array $params
+   */
+  public static function import(array $params)
+  {
+    $alias = new ImportService($params);
+    $alias->send();
+  }
+
+
 }
