@@ -10,7 +10,8 @@ PHP SDK for working with the Segment.com analytics API.
 
 ## Examples:
 
-```
+```php
+<?php
 require __DIR__ . '/vendor/autoload.php';
 
 use CdnSteve\Segment\Segment;
