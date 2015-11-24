@@ -1,0 +1,24 @@
+{
+    "name": "cdnsteve/segment-php-sdk",
+    "description": "Segment.com PHP SDK",
+    "require": {
+        "php" : "^5.6 || ^7.0",
+        "guzzlehttp/guzzle": "^6.1"
+    },
+    "autoload": {
+        "psr-4": { "CdnSteve\\Segment\\": "src/" }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steven Leggett",
+            "email": "leggettsteven@gmail.com",
+            "homepage": "http://www.stevenleggett.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev"
+}
