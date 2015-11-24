@@ -7,7 +7,7 @@ namespace CdnSteve\Segment;
  * Handle the alias endpoint for Segment.
  * @package Segment
  */
-class PageService
+class AliasService
 {
 
   const ENDPOINT ='alias/';
