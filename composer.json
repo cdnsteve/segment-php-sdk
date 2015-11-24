@@ -1,6 +1,7 @@
 {
     "name": "cdnsteve/segment-php-sdk",
     "description": "Segment.com PHP SDK",
+    "keywords": ["segment", "segment.com", "segment php", "segment php library"],
     "require": {
         "php" : "^5.6 || ^7.0",
         "guzzlehttp/guzzle": "^6.1"

@@ -42,3 +42,7 @@ Analytics::track([
   ]
 ]);
 ```
+
+## License:
+
+MIT License
