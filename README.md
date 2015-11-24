@@ -8,7 +8,7 @@ Uses PHP namespaces, GuzzleHttp and Composer.
 
 ## Installation:
 
-`composer install cdnsteve/segment-php-sdk`
+`composer require cdnsteve/segment-php-sdk`
 
 
 ## Examples:
