@@ -3,6 +3,9 @@
 PHP SDK for working with the Segment.com analytics API.
 Uses PHP namespaces, GuzzleHttp and Composer.
 
+*Please note this is in heavy development and should not yet be used in production.*
+
+
 ## Installation:
 
 `composer install cdnsteve/segment-php-sdk`
