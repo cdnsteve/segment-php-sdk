@@ -1,7 +1,7 @@
 # Segment PHP SDK
 
 PHP SDK for working with the Segment.com analytics API.
-
+Uses PHP namespaces, GuzzleHttp and Composer.
 
 ## Installation:
 
