@@ -1,25 +1,27 @@
 <?php
 
-namespace CdnSteve\Segment;
+namespace CdnSteve\Segment\Services;
+use CdnSteve\Segment\Validate;
+use CdnSteve\Segment\ApiRequest;
 
 /**
- * Class PageService
- * Handle the page endpoint for Segment.
+ * Class GroupService
+ * Handle the track endpoint for Segment.
  * @package Segment
  */
-class PageService
+class GroupService implements ServiceInterface
 {
 
-  const ENDPOINT ='page/';
+  const ENDPOINT ='group/';
 
   /**
    * @anonymousId String, optional.
    * @userId String, required. UserId OR anonymousId required.
    * @context Array, optional.
-   * @name String, optional.
    * @integrations Array, optional.
    * @timestamp Date, optional.
    * @properties Array, optional.
+   * @traits Array, optional.
    */
 
   public $message;
@@ -36,7 +38,7 @@ class PageService
   {
     try {
       $validate = new Validate();
-      $validate->page($this->message);
+      $validate->group($this->message);
 
       $client = new ApiRequest(self::ENDPOINT);
       $res = $client->send($this->message);

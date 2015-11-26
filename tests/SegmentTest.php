@@ -1,6 +1,6 @@
 <?php
 
-use Segment\Segment;
+use CdnSteve\Segment\Segment;
 
 
 class SegmentTest extends PHPUnit_Framework_TestCase {

@@ -1,21 +1,26 @@
 <?php
 
-namespace CdnSteve\Segment;
+namespace CdnSteve\Segment\Services;
+use CdnSteve\Segment\Validate;
+use CdnSteve\Segment\ApiRequest;
 
 /**
- * Class ImportService
+ * Class AliasService
  * Handle the alias endpoint for Segment.
  * @package Segment
  */
-class ImportService
+class AliasService implements ServiceInterface
 {
 
-  const ENDPOINT ='import/';
+  const ENDPOINT ='alias/';
 
   /**
-   * @batch Array, required. Each call must include.
+   * @anonymousId String, optional.
+   * @userId String, required. UserId OR anonymousId required.
    * @context Array, optional.
    * @integrations Array, optional.
+   * @timestamp Date, optional.
+   * @previousId String, required.
    */
 
   public $message;
@@ -32,7 +37,7 @@ class ImportService
   {
     try {
       $validate = new Validate();
-      $validate->import($this->message);
+      $validate->alias($this->message);
 
       $client = new ApiRequest(self::ENDPOINT);
       $res = $client->send($this->message);

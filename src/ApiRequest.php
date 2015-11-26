@@ -23,6 +23,7 @@ class ApiRequest
     // Set Guzzle Client
     $this->client = new Client([
       'base_uri' => Segment::baseUrl(),
+      'timeout'  => Segment::getTimeout(),
       'auth' => [Segment::getApiKey(), ':']
     ]);
   }
@@ -36,8 +37,8 @@ class ApiRequest
       'name' => Segment::PROJECT,
       'version' => Segment::VERSION
     ];
-    // Default to Async of not specifically set.
-    $syncType = Segment::getSyncType() ? Segment::getSyncType() : new AsyncHttpRequest();
+
+    $syncType = Segment::getSyncType();
     return $syncType->send($this->client, $this->endpoint, $this->message);
   }
 

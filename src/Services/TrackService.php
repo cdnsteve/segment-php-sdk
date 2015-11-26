@@ -1,13 +1,15 @@
 <?php
 
-namespace CdnSteve\Segment;
+namespace CdnSteve\Segment\Services;
+use CdnSteve\Segment\Validate;
+use CdnSteve\Segment\ApiRequest;
 
 /**
  * Class TrackService
  * Handle the track endpoint for Segment.
  * @package Segment
  */
-class TrackService
+class TrackService implements ServiceInterface
 {
 
   const ENDPOINT ='track/';

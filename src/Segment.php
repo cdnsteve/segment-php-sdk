@@ -28,6 +28,9 @@ class Segment
   // @var string|null sync or async option for API requests.
   public static $apiSyncType;
 
+  // @var int The Guzzle timeout value for requests.
+  public static $timeout;
+
   /**
    * @return string The API key used for requests.
    */
@@ -56,11 +59,29 @@ class Segment
 
   /**
    * Sets the sync type used for requests.
-   * @param \Segment\HttpInterface object $apiSyncType
+   * @param \CdnSteve\Segment\HttpInterface object $apiSyncType
    */
   public static function setSyncType(HttpInterface $apiSyncType)
   {
     self::$apiSyncType = $apiSyncType;
+  }
+
+  /**
+   * Returns the guzzle http timeout value for client.
+   * @return int
+   */
+  public static function getTimeout()
+  {
+    return self::$timeout;
+  }
+
+  /**
+   * Sets the guzzle http timeout value for client.
+   * @param int $timeout
+   */
+  public static function setTimeout($timeout)
+  {
+   self::$timeout = $timeout;
   }
 
   /**
@@ -74,4 +95,24 @@ class Segment
     return self::$apiBase . '/' . self::$apiVersion . '/';
   }
 
+  /**
+   * Sets the configuration options for Segment.
+   * @param array $params
+   */
+  public static function config(array $params)
+  {
+    self::setApiKey($params['api_key']);
+
+    self::setTimeout($params['timeout']);
+
+    switch($params['sync']) {
+      case 'async':
+        self::setSyncType(new \CdnSteve\Segment\AsyncHttpRequest());
+        break;
+      default:
+        self::setSyncType(new \CdnSteve\Segment\SyncHttpRequest());
+        break;
+    }
+
+  }
 }

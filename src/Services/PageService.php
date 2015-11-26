@@ -1,24 +1,27 @@
 <?php
 
-namespace CdnSteve\Segment;
+namespace CdnSteve\Segment\Services;
+use CdnSteve\Segment\Validate;
+use CdnSteve\Segment\ApiRequest;
 
 /**
- * Class AliasService
- * Handle the alias endpoint for Segment.
+ * Class PageService
+ * Handle the page endpoint for Segment.
  * @package Segment
  */
-class AliasService
+class PageService implements ServiceInterface
 {
 
-  const ENDPOINT ='alias/';
+  const ENDPOINT ='page/';
 
   /**
    * @anonymousId String, optional.
    * @userId String, required. UserId OR anonymousId required.
    * @context Array, optional.
+   * @name String, optional.
    * @integrations Array, optional.
    * @timestamp Date, optional.
-   * @previousId String, required.
+   * @properties Array, optional.
    */
 
   public $message;
@@ -35,7 +38,7 @@ class AliasService
   {
     try {
       $validate = new Validate();
-      $validate->alias($this->message);
+      $validate->page($this->message);
 
       $client = new ApiRequest(self::ENDPOINT);
       $res = $client->send($this->message);

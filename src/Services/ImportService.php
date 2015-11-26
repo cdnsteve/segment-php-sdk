@@ -1,25 +1,23 @@
 <?php
 
-namespace CdnSteve\Segment;
+namespace CdnSteve\Segment\Services;
+use CdnSteve\Segment\Validate;
+use CdnSteve\Segment\ApiRequest;
 
 /**
- * Class GroupService
- * Handle the track endpoint for Segment.
+ * Class ImportService
+ * Handle the alias endpoint for Segment.
  * @package Segment
  */
-class GroupService
+class ImportService implements ServiceInterface
 {
 
-  const ENDPOINT ='group/';
+  const ENDPOINT ='import/';
 
   /**
-   * @anonymousId String, optional.
-   * @userId String, required. UserId OR anonymousId required.
+   * @batch Array, required. Each call must include.
    * @context Array, optional.
    * @integrations Array, optional.
-   * @timestamp Date, optional.
-   * @properties Array, optional.
-   * @traits Array, optional.
    */
 
   public $message;
@@ -36,7 +34,7 @@ class GroupService
   {
     try {
       $validate = new Validate();
-      $validate->group($this->message);
+      $validate->import($this->message);
 
       $client = new ApiRequest(self::ENDPOINT);
       $res = $client->send($this->message);

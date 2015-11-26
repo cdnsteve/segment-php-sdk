@@ -2,6 +2,10 @@
 
 namespace CdnSteve\Segment;
 
+/**
+ * Class SyncHttpRequest
+ * @package CdnSteve\Segment
+ */
 class SyncHttpRequest implements HttpInterface
 {
   public $message;

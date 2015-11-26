@@ -2,6 +2,10 @@
 
 namespace CdnSteve\Segment;
 
+/**
+ * Class AsyncHttpRequest
+ * @package CdnSteve\Segment
+ */
 class AsyncHttpRequest implements HttpInterface
 {
   public $message;
@@ -10,6 +14,8 @@ class AsyncHttpRequest implements HttpInterface
 
   public function send($client, $endpoint, $message)
   {
+    //@ TODO setup async requests here.
+
     //Send Async Request
     //$promise = $client->requestAsync('GET', 'http://httpbin.org/get');
 

@@ -1,7 +1,12 @@
 <?php
 
 namespace CdnSteve\Segment;
-use CdnSteve\Segment\Identify;
+use CdnSteve\Segment\Services\IdentifyService;
+use CdnSteve\Segment\Services\TrackService;
+use CdnSteve\Segment\Services\PageService;
+use CdnSteve\Segment\Services\GroupService;
+use CdnSteve\Segment\Services\AliasService;
+use CdnSteve\Segment\Services\ImportService;
 
 /**
  * Class Analytics

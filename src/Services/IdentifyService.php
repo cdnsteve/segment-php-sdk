@@ -1,13 +1,15 @@
 <?php
 
-namespace CdnSteve\Segment;
+namespace CdnSteve\Segment\Services;
+use CdnSteve\Segment\Validate;
+use CdnSteve\Segment\ApiRequest;
 
 /**
  * Class IdentifyService
  * Handle the identify endpoint for Segment.
  * @package Segment
  */
-class IdentifyService
+class IdentifyService implements ServiceInterface
 {
 
   const ENDPOINT ='identify/';
