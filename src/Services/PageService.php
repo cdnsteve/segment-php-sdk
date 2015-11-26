@@ -46,7 +46,7 @@ class PageService implements ServiceInterface
     }
     catch(ValidationException $e) {
       // Do Something.
-      var_dump($e->getMessage());
+      // var_dump($e->getMessage());
     }
 
   }
