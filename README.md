@@ -20,10 +20,11 @@ require __DIR__ . '/vendor/autoload.php';
 use CdnSteve\Segment\Segment;
 use CdnSteve\Segment\Analytics;
 
-Segment::setApiKey('YOUR_API_KEY');
-// Defaults to AsyncHttpRequest
-// Can be changed with:
-// Segment::setSyncType(new \CdnSteve\Segment\SyncHttpRequest());
+Segment::config([
+  'api_key' => 'YOUR_API_KEY',
+  'timeout' => 2.0, // HTTP request in seconds.
+  'sync' => 'sync' // optional: sync or async. 
+  ]);
 
 // Setup unique identity to track.
 Analytics::identify([
