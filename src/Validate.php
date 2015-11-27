@@ -178,7 +178,7 @@ class Validate {
    * @param array $message
    * @return array $message with library tags.
    */
-  public function addLibrary(array $message)
+  public function addLibraryInfo(array $message)
   {
     // Add SDK info for requests.
     $message['context']['library'] = [

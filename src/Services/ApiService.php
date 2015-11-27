@@ -8,17 +8,11 @@ use CdnSteve\Segment\ApiRequest;
  * Handle the identify endpoint for Segment.
  * @package Segment
  */
-class IdentifyService
+class ApiService
 {
-
   /**
-	* @anonymousId String, optional.
-  * @userId String, required. UserId OR anonymousId required.
-	* @context Array, optional.
-	* @integrations Array, optional.
-	* @timestamp Date, optional.
-	* @traits Array, optional.
-	*/
+   * @var array $message to send to Segment
+   */
   public $message;
 
   /**
@@ -34,6 +28,11 @@ class IdentifyService
     $this->apiConnection = $apiConnection;
 	}
 
+  /**
+   * Send the request to the API.
+   * @param array $message
+   * @return object $res Guzzle response object
+   */
   public function send(array $message)
   {
     $this->message = $message;

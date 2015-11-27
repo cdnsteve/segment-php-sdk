@@ -1,6 +1,6 @@
 <?php
 
-use CdnSteve\Segment\Services\IdentifyService;
+use CdnSteve\Segment\Services\ApiService;
 use CdnSteve\Segment\GuzzleRequest;
 
 use GuzzleHttp\Client;
@@ -10,7 +10,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Exception\RequestException;
 
-class IdentifyServiceTest extends PHPUnit_Framework_TestCase {
+class ApiServiceTest extends PHPUnit_Framework_TestCase {
 
   protected $client ;
 
@@ -32,11 +32,12 @@ class IdentifyServiceTest extends PHPUnit_Framework_TestCase {
 
     $params = ['userId'=> '999'];
 
-    $identify = new IdentifyService($apiConnection);
+    $identify = new ApiService($apiConnection);
     //$identify->send($params);
+    $response = $identify->send($params);
     $result = 200;
 
-    $this->assertEquals($identify->send($params), $result);
+    $this->assertEquals($response->getStatusCode(), $result);
   }
 }
 

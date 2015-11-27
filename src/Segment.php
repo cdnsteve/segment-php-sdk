@@ -50,23 +50,6 @@ class Segment
   }
 
   /**
-   * @return string The sync type used for requests.
-   */
-  public static function getSyncType()
-  {
-    return self::$apiSyncType;
-  }
-
-  /**
-   * Sets the sync type used for requests.
-   * @param \CdnSteve\Segment\HttpInterface object $apiSyncType
-   */
-  public static function setSyncType(HttpInterface $apiSyncType)
-  {
-    self::$apiSyncType = $apiSyncType;
-  }
-
-  /**
    * Returns the guzzle http timeout value for client.
    * @return int
    */
@@ -104,15 +87,5 @@ class Segment
     self::setApiKey($params['api_key']);
 
     self::setTimeout($params['timeout']);
-
-    switch($params['sync']) {
-      case 'async':
-        self::setSyncType(new AsyncHttpRequest());
-        break;
-      default:
-        self::setSyncType(new SyncHttpRequest());
-        break;
-    }
-
   }
 }
