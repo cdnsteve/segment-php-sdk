@@ -107,10 +107,10 @@ class Segment
 
     switch($params['sync']) {
       case 'async':
-        self::setSyncType(new \CdnSteve\Segment\AsyncHttpRequest());
+        self::setSyncType(new AsyncHttpRequest());
         break;
       default:
-        self::setSyncType(new \CdnSteve\Segment\SyncHttpRequest());
+        self::setSyncType(new SyncHttpRequest());
         break;
     }
 

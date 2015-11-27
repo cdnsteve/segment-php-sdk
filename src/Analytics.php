@@ -22,8 +22,12 @@ class Analytics implements ApiInterface
    */
   public static function identify(array $params)
   {
-    $identify = new IdentifyService($params);
-    $identify->send();
+    $validate = new Validate();
+    $validate->identify($params);
+
+    $apiConnection = new GuzzleRequest('identify/');
+    $identify = new IdentifyService($apiConnection);
+    $identify->send($params);
   }
 
   /**

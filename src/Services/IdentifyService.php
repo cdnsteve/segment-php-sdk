@@ -1,7 +1,6 @@
 <?php
 
 namespace CdnSteve\Segment\Services;
-use CdnSteve\Segment\Validate;
 use CdnSteve\Segment\ApiRequest;
 
 /**
@@ -9,12 +8,10 @@ use CdnSteve\Segment\ApiRequest;
  * Handle the identify endpoint for Segment.
  * @package Segment
  */
-class IdentifyService implements ServiceInterface
+class IdentifyService
 {
 
-  const ENDPOINT ='identify/';
-	
-	/**
+  /**
 	* @anonymousId String, optional.
   * @userId String, required. UserId OR anonymousId required.
 	* @context Array, optional.
@@ -22,25 +19,26 @@ class IdentifyService implements ServiceInterface
 	* @timestamp Date, optional.
 	* @traits Array, optional.
 	*/
-
   public $message;
 
   /**
-   * Build message and send.
-   * @param array $message
+   * @var ServiceInterface
    */
-	public function __construct(array $message) {
-    $this->message = $message;
+  private $apiConnection;
+
+  /**
+   *
+   * @param \CdnSteve\Segment\Services\ServiceInterface $apiConnection
+   */
+	public function __construct(ServiceInterface $apiConnection) {
+    $this->apiConnection = $apiConnection;
 	}
 
-  public function send()
+  public function send(array $message)
   {
+    $this->message = $message;
     try {
-      $validate = new Validate();
-      $validate->identify($this->message);
-
-      $client = new ApiRequest(self::ENDPOINT);
-      $res = $client->send($this->message);
+      $res = $this->apiConnection->send($this->message);
       return $res;
     }
     catch(ValidationException $e) {

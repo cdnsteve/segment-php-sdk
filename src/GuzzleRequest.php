@@ -2,9 +2,10 @@
 
 namespace CdnSteve\Segment;
 
+use CdnSteve\Segment\Services\ServiceInterface;
 use GuzzleHttp\Client;
 
-class ApiRequest
+class GuzzleRequest implements ServiceInterface
 {
   /**
    * Guzzle Client object.
@@ -16,11 +17,11 @@ class ApiRequest
 
   public $message;
 
-  public function __construct($endpoint)
+  public function __construct($endpoint) // Might need to DI Guzzle $client here
   {
     $this->endpoint = $endpoint;
 
-    // Set Guzzle Client
+    // Set Guzzle Client: @TODO need to remove from here?
     $this->client = new Client([
       'base_uri' => Segment::baseUrl(),
       'timeout'  => Segment::getTimeout(),
