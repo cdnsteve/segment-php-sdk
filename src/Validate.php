@@ -173,5 +173,20 @@ class Validate {
     }
   }
 
+  /**
+   * Add library metadata to message
+   * @param array $message
+   * @return array $message with library tags.
+   */
+  public function addLibrary(array $message)
+  {
+    // Add SDK info for requests.
+    $message['context']['library'] = [
+      'name' => Segment::PROJECT,
+      'version' => Segment::VERSION
+    ];
+    return $message;
+  }
+
 }
 

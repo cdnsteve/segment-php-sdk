@@ -17,30 +17,30 @@ class GuzzleRequest implements ServiceInterface
 
   public $message;
 
-  public function __construct($endpoint) // Might need to DI Guzzle $client here
+  public function __construct(Client $client, $endpoint)
   {
+    $this->client = $client;
     $this->endpoint = $endpoint;
-
-    // Set Guzzle Client: @TODO need to remove from here?
-    $this->client = new Client([
-      'base_uri' => Segment::baseUrl(),
-      'timeout'  => Segment::getTimeout(),
-      'auth' => [Segment::getApiKey(), ':']
-    ]);
   }
 
+  /**
+   * Send the message via POST
+   * @param array $message the message to post
+   * @return object the HTTP status code.
+   */
   public function send(array $message)
   {
     // Build message
     $this->message = $message;
-    // Add SDK info for requests.
-    $this->message['context']['library'] = [
-      'name' => Segment::PROJECT,
-      'version' => Segment::VERSION
-    ];
 
-    $syncType = Segment::getSyncType();
-    return $syncType->send($this->client, $this->endpoint, $this->message);
+    // @TODD add switch for sync or async options
+
+    // Guzzle request, send data to Segment.
+    $response = $this->client->request('POST', $this->endpoint, [
+      'json' => $this->message
+    ]);
+
+    return $response;
   }
 
 }

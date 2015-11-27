@@ -37,14 +37,7 @@ class IdentifyService
   public function send(array $message)
   {
     $this->message = $message;
-    try {
-      $res = $this->apiConnection->send($this->message);
-      return $res;
-    }
-    catch(ValidationException $e) {
-      // Do Something.
-      // var_dump($e->getMessage());
-    }
-
+    $res = $this->apiConnection->send($this->message);
+    return $res;
   }
 }

@@ -7,6 +7,7 @@ use CdnSteve\Segment\Services\PageService;
 use CdnSteve\Segment\Services\GroupService;
 use CdnSteve\Segment\Services\AliasService;
 use CdnSteve\Segment\Services\ImportService;
+use GuzzleHttp\Client;
 
 /**
  * Class Analytics
@@ -25,9 +26,15 @@ class Analytics implements ApiInterface
     $validate = new Validate();
     $validate->identify($params);
 
-    $apiConnection = new GuzzleRequest('identify/');
+    // Initialize Guzzle
+    $client = new Client([
+      'base_uri' => Segment::baseUrl(),
+      'timeout'  => Segment::getTimeout(),
+      'auth' => [Segment::getApiKey(), ':']
+    ]);
+    $apiConnection = new GuzzleRequest($client, 'identify/');
     $identify = new IdentifyService($apiConnection);
-    $identify->send($params);
+    return $identify->send($params);
   }
 
   /**
