@@ -31,7 +31,7 @@ class ApiService
   /**
    * Send the request to the API.
    * @param array $message
-   * @return object $res Guzzle response object
+   * @return object $res response object
    */
   public function send(array $message)
   {

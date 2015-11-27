@@ -31,9 +31,67 @@ class ApiServiceTest extends PHPUnit_Framework_TestCase {
     $apiConnection = new GuzzleRequest($this->client, 'identify/');
 
     $params = ['userId'=> '999'];
-
     $identify = new ApiService($apiConnection);
-    //$identify->send($params);
+    $response = $identify->send($params);
+    $result = 200;
+
+    $this->assertEquals($response->getStatusCode(), $result);
+  }
+
+  public function testTrackEndpoint()
+  {
+    $apiConnection = new GuzzleRequest($this->client, 'track/');
+
+    $params = ['userId'=> '999'];
+    $identify = new ApiService($apiConnection);
+    $response = $identify->send($params);
+    $result = 200;
+
+    $this->assertEquals($response->getStatusCode(), $result);
+  }
+
+  public function testImportEndpoint()
+  {
+    $apiConnection = new GuzzleRequest($this->client, 'import/');
+
+    $params = ['userId'=> '999'];
+    $identify = new ApiService($apiConnection);
+    $response = $identify->send($params);
+    $result = 200;
+
+    $this->assertEquals($response->getStatusCode(), $result);
+  }
+
+  public function testPageEndpoint()
+  {
+    $apiConnection = new GuzzleRequest($this->client, 'page/');
+
+    $params = ['userId'=> '999'];
+    $identify = new ApiService($apiConnection);
+    $response = $identify->send($params);
+    $result = 200;
+
+    $this->assertEquals($response->getStatusCode(), $result);
+  }
+
+  public function testGroupEndpoint()
+  {
+    $apiConnection = new GuzzleRequest($this->client, 'group/');
+
+    $params = ['userId'=> '999'];
+    $identify = new ApiService($apiConnection);
+    $response = $identify->send($params);
+    $result = 200;
+
+    $this->assertEquals($response->getStatusCode(), $result);
+  }
+
+  public function testAliasEndpoint()
+  {
+    $apiConnection = new GuzzleRequest($this->client, 'alias/');
+
+    $params = ['userId'=> '999'];
+    $identify = new ApiService($apiConnection);
     $response = $identify->send($params);
     $result = 200;
 
