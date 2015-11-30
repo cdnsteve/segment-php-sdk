@@ -3,6 +3,8 @@
 PHP SDK for working with the Segment.com analytics API.
 Uses PHP namespaces, GuzzleHttp and Composer.
 
+[![Build Status](https://travis-ci.org/cdnsteve/segment-php-sdk.svg?branch=master)](https://travis-ci.org/cdnsteve/segment-php-sdk)
+
 *Please note this is in heavy development and should not yet be used in production.*
 
 
