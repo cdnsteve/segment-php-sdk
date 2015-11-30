@@ -45,8 +45,6 @@ class Validate {
      */
     // Validate common params.
     $this->common($message);
-
-
 	}
 
   /**
@@ -171,6 +169,21 @@ class Validate {
     if (!isset($message['batch'])) {
       throw new ValidationException('import validation: batch is required');
     }
+  }
+
+  /**
+   * Add library metadata to message
+   * @param array $message
+   * @return array $message with library tags.
+   */
+  public function addLibraryInfo(array $message)
+  {
+    // Add SDK info for requests.
+    $message['context']['library'] = [
+      'name' => Segment::PROJECT,
+      'version' => Segment::VERSION
+    ];
+    return $message;
   }
 
 }

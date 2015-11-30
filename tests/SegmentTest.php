@@ -11,24 +11,18 @@ class SegmentTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals(Segment::getApiKey(), $result);
   }
 
+  public function testBaseURL()
+  {
+    $url = Segment::baseUrl();
+    $result = 'https://api.segment.io/v1/';
+    $this->assertEquals($url, $result);
+  }
+
+  public function testAPIVersion()
+  {
+    $version = Segment::VERSION;
+    $result = '1.0.0';
+    $this->assertEquals($version, $result);
+  }
+
 }
-
-
-/*
-Analytics::identify([
-  'userID' => '1e810c197e',
-  'traits' => [
-    'name' => 'Bill Lumbergh',
-    'email' => 'test@test.ca',
-  ],
-]);
-
-Analytics::track([
-  "userId" => "019mr8mf4r",
-  "event" => "Purchased Item",
-  "properties" => [
-    "revenue" => 39.95,
-    "shipping" => "2-day"
-  ]
-]);
-*/

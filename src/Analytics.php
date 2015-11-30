@@ -1,12 +1,8 @@
 <?php
 
 namespace CdnSteve\Segment;
-use CdnSteve\Segment\Services\IdentifyService;
-use CdnSteve\Segment\Services\TrackService;
-use CdnSteve\Segment\Services\PageService;
-use CdnSteve\Segment\Services\GroupService;
-use CdnSteve\Segment\Services\AliasService;
-use CdnSteve\Segment\Services\ImportService;
+use CdnSteve\Segment\Services\ApiService;
+use GuzzleHttp\Client;
 
 /**
  * Class Analytics
@@ -16,69 +12,141 @@ use CdnSteve\Segment\Services\ImportService;
 class Analytics implements ApiInterface
 {
   /**
-   * Identify endpoint API calls.
+   * Identify API endpoint.
    *
-   * @param array|null $params
+   * @param array $params message to send to Segment
+   * @return object Guzzle response object
    */
   public static function identify(array $params)
   {
-    $identify = new IdentifyService($params);
-    $identify->send();
+    $validate = new Validate();
+    $validate->identify($params);
+    $message = $validate->addLibraryInfo($params);
+
+    // Initialize Guzzle
+    $client = new Client([
+      'base_uri' => Segment::baseUrl(),
+      'timeout'  => Segment::getTimeout(),
+      'auth' => [Segment::getApiKey(), ':']
+    ]);
+    $apiConnection = new GuzzleRequest($client, 'identify/');
+    $identify = new ApiService($apiConnection);
+    return $identify->send($message);
   }
 
   /**
    * Track endpoint API calls.
    *
-   * @param array $params
+   * @param array $params message to send to Segment
+   * @return object Guzzle response object
    */
   public static function track(array $params)
   {
-    $track = new TrackService($params);
-    $track->send();
+    $validate = new Validate();
+    $validate->track($params);
+    $message = $validate->addLibraryInfo($params);
+
+    // Initialize Guzzle
+    $client = new Client([
+      'base_uri' => Segment::baseUrl(),
+      'timeout'  => Segment::getTimeout(),
+      'auth' => [Segment::getApiKey(), ':']
+    ]);
+    $apiConnection = new GuzzleRequest($client, 'track/');
+    $identify = new ApiService($apiConnection);
+    return $identify->send($message);
   }
 
   /**
    * Page endpoint API calls.
    *
-   * @param array $params
+   * @param array $params message to send to Segment
+   * @return object Guzzle response object
    */
   public static function page(array $params)
   {
-    $page = new PageService($params);
-    $page->send();
+    $validate = new Validate();
+    $validate->page($params);
+    $message = $validate->addLibraryInfo($params);
+
+    // Initialize Guzzle
+    $client = new Client([
+      'base_uri' => Segment::baseUrl(),
+      'timeout'  => Segment::getTimeout(),
+      'auth' => [Segment::getApiKey(), ':']
+    ]);
+    $apiConnection = new GuzzleRequest($client, 'page/');
+    $identify = new ApiService($apiConnection);
+    return $identify->send($message);
   }
 
   /**
    * Group endpoint API calls.
    *
-   * @param array $params
+   * @param array $params message to send to Segment
+   * @return object Guzzle response object
    */
   public static function group(array $params)
   {
-    $group = new GroupService($params);
-    $group->send();
+    $validate = new Validate();
+    $validate->group($params);
+    $message = $validate->addLibraryInfo($params);
+
+    // Initialize Guzzle
+    $client = new Client([
+      'base_uri' => Segment::baseUrl(),
+      'timeout'  => Segment::getTimeout(),
+      'auth' => [Segment::getApiKey(), ':']
+    ]);
+    $apiConnection = new GuzzleRequest($client, 'group/');
+    $identify = new ApiService($apiConnection);
+    return $identify->send($message);
   }
 
   /**
    * Alias endpoint API calls.
    *
-   * @param array $params
+   * @param array $params message to send to Segment
+   * @return object Guzzle response object
    */
   public static function alias(array $params)
   {
-    $alias = new AliasService($params);
-    $alias->send();
+    $validate = new Validate();
+    $validate->alias($params);
+    $message = $validate->addLibraryInfo($params);
+
+    // Initialize Guzzle
+    $client = new Client([
+      'base_uri' => Segment::baseUrl(),
+      'timeout'  => Segment::getTimeout(),
+      'auth' => [Segment::getApiKey(), ':']
+    ]);
+    $apiConnection = new GuzzleRequest($client, 'alias/');
+    $identify = new ApiService($apiConnection);
+    return $identify->send($message);
   }
 
   /**
    * Import endpoint API calls.
    *
-   * @param array $params
+   * @param array $params message to send to Segment
+   * @return object Guzzle response object
    */
   public static function import(array $params)
   {
-    $alias = new ImportService($params);
-    $alias->send();
+    $validate = new Validate();
+    $validate->import($params);
+    $message = $validate->addLibraryInfo($params);
+
+    // Initialize Guzzle
+    $client = new Client([
+      'base_uri' => Segment::baseUrl(),
+      'timeout'  => Segment::getTimeout(),
+      'auth' => [Segment::getApiKey(), ':']
+    ]);
+    $apiConnection = new GuzzleRequest($client, 'import/');
+    $identify = new ApiService($apiConnection);
+    return $identify->send($message);
   }
 
 
