@@ -45,8 +45,6 @@ class Validate {
      */
     // Validate common params.
     $this->common($message);
-
-
 	}
 
   /**
