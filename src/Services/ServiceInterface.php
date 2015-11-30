@@ -2,7 +2,11 @@
 
 namespace CdnSteve\Segment\Services;
 
+/**
+ * Interface ServiceInterface
+ * @package CdnSteve\Segment\Services
+ */
 interface ServiceInterface
 {
-  public function send();
+  public function send(array $message);
 }

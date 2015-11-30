@@ -23,7 +23,6 @@ use CdnSteve\Segment\Analytics;
 Segment::config([
   'api_key' => 'YOUR_API_KEY',
   'timeout' => 2.0, // HTTP request in seconds.
-  'sync' => 'sync' // optional: sync or async. 
   ]);
 
 // Setup unique identity to track.
